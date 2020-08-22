@@ -1,2 +1,6 @@
-# TrabajoPracticoMaquinasDeEstado-Semaforo
-Máquina de Estado de un Semáforo.
+# Trabajo Práctico Máquinas de Estado - Semáforo
+Alumno: Lucas I. González
+
+# Memoria descriptiva
+
+# Diagrama
