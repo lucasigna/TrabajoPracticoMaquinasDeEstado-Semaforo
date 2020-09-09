@@ -6,7 +6,7 @@ Mi sistema representa 2 semáforos en un cruce de 2 calles. Existen 4 estados, d
 # Diagrama
 ![](https://github.com/lucasigna/TrabajoPracticoMaquinasDeEstado-Semaforo/blob/master/Recursos/Diagrama.jpeg)
 # main.c
-```
+```c
 #include <stdio.h>
 #include "lib.h"
 
