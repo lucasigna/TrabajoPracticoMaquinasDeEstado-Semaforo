@@ -6,7 +6,31 @@ Mi sistema representa 2 semáforos en un cruce de 2 calles. Existen 4 estados, d
 # Diagrama
 ![](https://github.com/lucasigna/TrabajoPracticoMaquinasDeEstado-Semaforo/blob/master/Recursos/Diagrama.jpeg)
 # main.c
-![](https://github.com/lucasigna/TrabajoPracticoMaquinasDeEstado-Semaforo/blob/master/Código/src/main.c)
+´´´c
+#include <stdio.h>
+#include "lib.h"
+
+int main(void)
+{
+   tiempos_de_espera set;
+   estados estado = verde1;
+
+   set = f_inicio();
+   while(1){
+      switch (estado) {
+        case verde1: estado = f_semaforo1_verde(set);
+                     break;
+        case amarillo1: estado = f_semaforo1_amarillo(set);
+                       break;
+        case verde2: estado = f_semaforo2_verde(set);
+                     break;
+        case amarillo2: estado = f_semaforo2_amarillo(set);
+                       break;
+      }
+    }
+    return 0;
+}
+´´´
 # lib.h
 ![](https://github.com/lucasigna/TrabajoPracticoMaquinasDeEstado-Semaforo/blob/master/Código/lib/lib.h)
 
