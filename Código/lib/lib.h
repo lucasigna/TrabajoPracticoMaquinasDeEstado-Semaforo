@@ -20,5 +20,8 @@ estados f_semaforo1_verde(tiempos_de_espera);
 estados f_semaforo2_verde(tiempos_de_espera);
 estados f_semaforo1_amarillo(tiempos_de_espera);
 estados f_semaforo2_amarillo(tiempos_de_espera);
+void toggle_luz_amarilla(int,int);
+void toggle_luz_roja(int,int);
+void toggle_luz_verde(int,int);
 
 #endif
