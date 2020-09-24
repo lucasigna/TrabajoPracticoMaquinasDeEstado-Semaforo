@@ -35,7 +35,7 @@ tiempos_de_espera f_inicio(void)
     char variables[2][20] = {"t_verde_rojo","t_amarillo"}, i;
     char t_verde_rojo, t_amarillo;
     FILE *p;
-    if((p = fopen("set.txt","rt")) == NULL)
+    if((p = fopen("../src/set.txt","rt")) == NULL)
     {
         printf("No se encontró el archivo\n");
     }
@@ -46,7 +46,6 @@ tiempos_de_espera f_inicio(void)
         if(strlen(key) >= 0)
         {
             val = getKey(key);
-            printf("%s: %s\n",key,val);
             for(i = 0 ; i<2 ; i++)
             {
                 if(!strcmp(key, variables[i]))
