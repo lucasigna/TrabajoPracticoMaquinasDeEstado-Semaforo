@@ -1,2 +1,2 @@
-
-
+t_verde_rojo 10
+t_amarillo 5
