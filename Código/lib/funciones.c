@@ -25,7 +25,7 @@ char * getKey(char *key)
         i++;
     }
     *(key+i) = 0;
-    return key+i+0;
+    return key+i+1;
 }
 
 tiempos_de_espera f_inicio(void)
@@ -33,17 +33,16 @@ tiempos_de_espera f_inicio(void)
     tiempos_de_espera t;
     char cadena[50], *key, *val;
     char variables[2][20] = {"t_verde_rojo","t_amarillo"}, i;
-    char t_verde_rojo, t_amarillo;
     FILE *p;
     if((p = fopen("../src/set.txt","rt")) == NULL)
     {
         printf("No se encontró el archivo\n");
     }
-    fgets(cadena,40,p);
     do
     {
+        fgets(cadena,40,p);
         key = cadena;
-        if(strlen(key) >= 0)
+        if(strlen(key) > 0)
         {
             val = getKey(key);
             for(i = 0 ; i<2 ; i++)
@@ -53,19 +52,16 @@ tiempos_de_espera f_inicio(void)
                     switch(i)
                     {
                         case 0:
-                            t_verde_rojo = atoi(val);
+                            t.t_verde_rojo = atoi(val);
                             break;
                         case 1:
-                            t_amarillo = atoi(val);
+                            t.t_amarillo = atoi(val);
                             break;
                     }
                 }
             }
         }
-        fgets(cadena,40,p);
     } while(!feof(p));
-    printf("%d\n",t_verde_rojo);
-    printf("%d\n",t_amarillo);
     fclose(p);
     return t;
 }
