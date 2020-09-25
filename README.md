@@ -71,6 +71,8 @@ void toggle_luz_verde(int,int);
 ```c
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
+#include <stdlib.h>
 #include "../lib/lib.h"
 
 //Voy a usar esta función para manejar los tiempos en las otras funciones.
@@ -86,12 +88,55 @@ void delay(int segundos)
     while (clock() < inicio + mili_seg);
 }
 
+char * getKey(char *key)
+{
+    char i = 0;
+    while(*(key+i) != ' ')
+    {
+        i++;
+    }
+    *(key+i) = 0;
+    return key+i+0;
+}
+
 tiempos_de_espera f_inicio(void)
 {
     tiempos_de_espera t;
+    char cadena[50], *key, *val;
+    char variables[2][20] = {"t_verde_rojo","t_amarillo"}, i;
+    char t_verde_rojo, t_amarillo;
     FILE *p;
-    p = fopen("set.txt","r");
-    fread(&t,sizeof(t),1,p);
+    if((p = fopen("../src/set.txt","rt")) == NULL)
+    {
+        printf("No se encontró el archivo\n");
+    }
+    fgets(cadena,40,p);
+    do
+    {
+        key = cadena;
+        if(strlen(key) >= 0)
+        {
+            val = getKey(key);
+            for(i = 0 ; i<2 ; i++)
+            {
+                if(!strcmp(key, variables[i]))
+                {
+                    switch(i)
+                    {
+                        case 0:
+                            t_verde_rojo = atoi(val);
+                            break;
+                        case 1:
+                            t_amarillo = atoi(val);
+                            break;
+                    }
+                }
+            }
+        }
+        fgets(cadena,40,p);
+    } while(!feof(p));
+    printf("%d\n",t_verde_rojo);
+    printf("%d\n",t_amarillo);
     fclose(p);
     return t;
 }
@@ -199,4 +244,9 @@ void toggle_luz_roja(int semaforo, int toggle)
         }
     }
 }
+```
+# Archivo de configuración
+```
+t_verde_rojo 10
+t_amarillo 5
 ```
